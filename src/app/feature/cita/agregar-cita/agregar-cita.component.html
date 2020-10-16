@@ -1,0 +1,56 @@
+<section class="container-fluid pt-5">
+    <h1 class="text-center color-t">Nueva Cita - SPA Ceiba</h1>
+    <hr class="color-p divider" />
+
+    <form>
+        <div class="row">
+            <div class="col">
+                <label class="color-t">Fecha Agendar: </label>
+                <div class="input-group">
+                    <input ngbDatepicker class="form-control text-dark" [minDate]="fechaMinimaParaSolicitar"
+                        #solicitudDate="ngbDatepicker" [markDisabled]="markDisabled">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary calendar" (click)="solicitudDate.toggle()"
+                            type="button">
+                            <i class="far fa-calendar text-p"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <label class="color-t">Cedula Cliente: </label>
+                <input type="number" class="form-control">
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col">
+                <label class="color-t">Codigo Cupon: </label>
+                <input type="number" class="form-control">
+            </div>
+            <div class="col">
+                <label class="color-t">Porcentaje de descuento: </label>
+                <input type="number" class="form-control" disabled>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col">
+                <label class="color-t">Producto: </label>
+                <select class="form-control"></select>
+            </div>
+            <div class="col">
+                <label class="color-t">Valor a Pagar: </label>
+                <input type="number" class="form-control" disabled>
+            </div>
+        </div>
+        <br />
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary bg-p">Submit</button>
+        </div>
+    </form>
+</section>

@@ -18,7 +18,7 @@ export class FooterComponent implements OnInit {
   fixearPosicion() {
     const historico = document.getElementById('contenido');
     const height = historico.offsetHeight;
-    if (height < (screen.height * 0.7)) {
+    if (height < (screen.height * 0.8)) {
       return true;
     }
     return false;

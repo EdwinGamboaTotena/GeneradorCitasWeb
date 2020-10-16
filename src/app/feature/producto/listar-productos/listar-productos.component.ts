@@ -4,8 +4,8 @@ import { SwalService } from 'src/app/shared/services/swal.service';
 import { ProductoService } from '../producto.service';
 
 @Component({
-  selector: 'app-listar-producto',
-  templateUrl: './listar-producto.component.html'
+  selector: 'app-listar-productos',
+  templateUrl: './listar-productos.component.html'
 })
 export class ListarProductoComponent implements OnInit {
 
