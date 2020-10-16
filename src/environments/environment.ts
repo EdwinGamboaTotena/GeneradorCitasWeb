@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlPrincipal: 'http://localhost:8080/consulta-online-divisas-app/api'
+  urlPrincipal: 'http://localhost:8080'
 };
 
 /*

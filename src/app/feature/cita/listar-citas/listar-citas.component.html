@@ -1,0 +1,25 @@
+<div class="padding-container justify-content-center">
+
+    <h2 class="color-t" [hidden]="!mostrarTabla()">No hay ninguna cita agendada actualmente.</h2>
+    <h2 class="color-t" [hidden]="mostrarTabla()">Citas registradas</h2>
+
+    <table class="table text-center table-striped" [hidden]="mostrarTabla()" >
+        <thead class="bg-p color-s">
+            <tr>
+                <th class="text-center">ID</th>
+                <th class="text-center">Producto Solicitado</th>
+                <th class="text-center">Fecha Solicitud</th>
+                <th class="text-center">Cedula Cliente</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cita of listaCitas">
+                <td class="text-center align-middle">{{cita.id}}</td>
+                <td class="text-center align-middle">{{cita.productoSolicitado.nombre}}</td>
+                <td class="text-center align-middle">{{cita.fechaSolicitud | date:'yyyy-MM-dd'}}</td>
+                <td class="text-center align-middle">{{cita.cedulaCliente}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

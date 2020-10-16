@@ -4,6 +4,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoaderComponent } from './loader/loader.component';
+import { InicioComponent } from './inicio/inicio.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { LoaderComponent } from './loader/loader.component';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    LoaderComponent
+    LoaderComponent,
+    InicioComponent
   ],
   exports: [
     HeaderComponent,

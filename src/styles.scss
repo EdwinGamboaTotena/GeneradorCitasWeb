@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 $color-primario: #9C27B0;
 $color-secundario: #FFFFFF;
+$color-texto: #9400D3;
 
 .color-p {
     color: $color-primario;
@@ -10,10 +11,34 @@ $color-secundario: #FFFFFF;
     color: $color-secundario;
 }
 
+.color-t {
+    color: $color-texto;
+}
+
 .bg-p {
     background-color: $color-primario;
 }
 
 .bg-s {
     background-color: $color-secundario;
+}
+
+section {
+    max-width: 100%;
+}
+
+.divider {
+    border-top: 3px solid !important;
+    margin-top: 0;
+}
+
+.form-control-feedback {
+    color: red;
+    font-size: 1em;
+}
+
+@media (max-width: 1024px) {
+    .padding-container{
+      padding: 1em!important;
+    }
 }

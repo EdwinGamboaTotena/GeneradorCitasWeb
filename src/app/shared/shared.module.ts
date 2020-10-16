@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BooleanStringPipe } from './pipes/boolean-string.pipe';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [BooleanStringPipe],
   imports: [
     CommonModule,
     FormsModule,
@@ -14,7 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   exports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BooleanStringPipe
   ]
 })
 export class SharedModule { }

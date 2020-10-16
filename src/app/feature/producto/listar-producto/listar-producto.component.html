@@ -1,0 +1,27 @@
+<div class="padding-container justify-content-center">
+
+    <h2 class="color-t" [hidden]="!mostrarTabla()">No hay ningun producto registrado actualmente.</h2>
+    <h2 class="color-t" [hidden]="mostrarTabla()">Productos registrados</h2>
+
+    <table class="table text-center table-striped" [hidden]="mostrarTabla()">
+        <thead class="bg-p color-s">
+            <tr>
+                <th class="text-center">Nombre</th>
+                <th class="text-center">Precio</th>
+                <th class="text-center">Genera Cupon</th>
+                <th class="text-center">Cupon a Generar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let producto of listaProductos">
+                <td class="text-center align-middle">{{producto.nombre}}</td>
+                <td class="text-center align-middle">{{producto.precio | currency}}</td>
+                <td class="text-center align-middle">{{producto.generaCupo | boleanToString}}</td>
+                <td class="text-center align-middle" [hidden]="!producto.generaCupo">
+                    {{producto.porcetajeCuponGenerar}} %</td>
+                <td class="text-center align-middle" [hidden]="producto.generaCupo">No aplica</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
