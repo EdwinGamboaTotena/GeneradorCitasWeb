@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+$color-primario: #9C27B0;
+$color-secundario: #FFFFFF;
+
+.color-p {
+    color: $color-primario;
+}
+
+.color-s {
+    color: $color-secundario;
+}
+
+.bg-p {
+    background-color: $color-primario;
+}
+
+.bg-s {
+    background-color: $color-secundario;
+}
