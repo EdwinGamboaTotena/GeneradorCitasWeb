@@ -11,11 +11,11 @@ export class FooterComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.anio = new Date().getFullYear();
   }
 
-  fixearPosicion() {
+  fixearPosicion(): boolean {
     const historico = document.getElementById('contenido');
     const height = historico.offsetHeight;
     if (height < (screen.height * 0.8)) {

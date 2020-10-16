@@ -8,11 +8,11 @@ export class LoaderService {
 
   constructor() { }
 
-  public show() {
+  public show(): void {
     this.mostrar = true;
   }
 
-  public hide() {
+  public hide(): void {
     this.mostrar = false;
   }
 }

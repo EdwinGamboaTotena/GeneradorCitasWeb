@@ -23,7 +23,7 @@ export class ListarProductoComponent implements OnInit {
     );
   }
 
-  mostrarTabla() {
+  mostrarTabla(): boolean {
     return (this.listaProductos === null && this.listaProductos.length === 0);
   }
 

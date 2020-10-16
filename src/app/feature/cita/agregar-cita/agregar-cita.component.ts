@@ -8,7 +8,7 @@ import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 export class AgregarCitaComponent implements OnInit {
 
   fechaMinimaParaSolicitar: { year: number, month: number, day: number };
-  fechasDeshabilitadas: boolean = false;
+  fechasDeshabilitadas = false;
   markDisabled;
 
   constructor(private calendar: NgbCalendar) {
