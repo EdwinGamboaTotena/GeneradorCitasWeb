@@ -17,9 +17,9 @@ export class ListarProductoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.productoService.consultarProductos().subscribe(
+    this.productoService.listarProductos().subscribe(
       (data: Producto[]) => this.listaProductos = data,
-      (error) => this.sweetService.popUp('Error', error.mensaje, 'error')
+      (error) => this.sweetService.popUp('Error', error.error.mensaje, 'error')
     );
   }
 

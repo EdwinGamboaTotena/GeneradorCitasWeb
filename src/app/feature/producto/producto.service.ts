@@ -12,7 +12,7 @@ export class ProductoService {
         private http: HttpClient) {
     }
 
-    consultarProductos() {
+    listarProductos() {
         return this.http.get(apiProducto, httpOptions).pipe();
     }
 

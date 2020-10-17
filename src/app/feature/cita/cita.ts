@@ -1,4 +1,4 @@
-import { Cupon } from './cupon';
+import { Cupon } from '../cupon/cupon';
 import { Producto } from '../../shared/models/producto';
 
 export class Cita {

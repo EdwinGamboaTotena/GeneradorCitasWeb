@@ -16,9 +16,9 @@ export class ListarCitasComponent implements OnInit {
     private sweetService: SwalService) { }
 
   ngOnInit(): void {
-    this.citaService.consultarCitas().subscribe(
+    this.citaService.listarCitas().subscribe(
       (data: Cita[]) => this.listaCitas = data,
-      (error) => this.sweetService.popUp('Error', error.mensaje, 'error')
+      (error) => this.sweetService.popUp('Error', error.error.mensaje, 'error')
     );
   }
 

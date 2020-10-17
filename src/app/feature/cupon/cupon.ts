@@ -1,4 +1,4 @@
-import { Cita } from './cita';
+import { Cita } from '../cita/cita';
 
 export class Cupon {
     constructor(

@@ -2,23 +2,31 @@
     <h1 class="text-center color-t">Nueva Cita - SPA Ceiba</h1>
     <hr class="color-p divider" />
 
-    <form>
+    <form #ngForm="ngForm" [formGroup]="formularioCita" (ngSubmit)="guardar()">
         <div class="row">
             <div class="col">
                 <label class="color-t">Fecha Agendar: </label>
                 <div class="input-group">
                     <input ngbDatepicker class="form-control text-dark" [minDate]="fechaMinimaParaSolicitar"
-                        #solicitudDate="ngbDatepicker" [markDisabled]="markDisabled">
+                        #solicitudDate="ngbDatepicker" [markDisabled]="markDisabled" formControlName="fechaSolicitud">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary calendar" (click)="solicitudDate.toggle()"
                             type="button">
                             <i class="far fa-calendar text-p"></i></button>
                     </div>
+                    <div class="form-control-feedback text-center col-12"
+                        *ngIf="erroresService.errores(formularioCita, 'fechaSolicitud', ngForm).hayErrores">
+                        Debe ingresar una fecha valida.
+                    </div>
                 </div>
             </div>
             <div class="col">
                 <label class="color-t">Cedula Cliente: </label>
-                <input type="number" class="form-control">
+                <input type="number" class="form-control" formControlName="cedulaCliente">
+                <div class="form-control-feedback text-center col-12"
+                    *ngIf="erroresService.errores(formularioCita, 'cedulaCliente', ngForm).hayErrores">
+                    Debe ingresara una cedula.
+                </div>
             </div>
         </div>
 
@@ -26,12 +34,16 @@
 
         <div class="row">
             <div class="col">
-                <label class="color-t">Codigo Cupon: </label>
-                <input type="number" class="form-control">
+                <label class="color-t">Código Cupón: </label>
+                <input type="number" class="form-control" formControlName="cuponUsado" (focusout)="consultarCupon()">
+                <div class="form-control-feedback text-center col-12"
+                    *ngIf="erroresService.errores(formularioCita, 'cuponUsado', ngForm).hayErrores">
+                    Cupón invalido.
+                </div>
             </div>
             <div class="col">
                 <label class="color-t">Porcentaje de descuento: </label>
-                <input type="number" class="form-control" disabled>
+                <input type="text" class="form-control" [value]="descuentoCuponSeleccionado() | currency" disabled>
             </div>
         </div>
 
@@ -40,17 +52,32 @@
         <div class="row">
             <div class="col">
                 <label class="color-t">Producto: </label>
-                <select class="form-control"></select>
+                <select class="form-control" formControlName="productoSolicitado">
+                    <option value="" selected disabled>Seleccione un producto</option>
+                    <option [ngValue]="producto" *ngFor="let producto of listaProductos">{{producto.nombre}}</option>
+                </select>
+                <div class="form-control-feedback text-center col-12"
+                    *ngIf="erroresService.errores(formularioCita, 'productoSolicitado', ngForm).hayErrores">
+                    Debe seleccionar un producto.
+                </div>
             </div>
             <div class="col">
-                <label class="color-t">Valor a Pagar: </label>
-                <input type="number" class="form-control" disabled>
+                <label class="color-t">Valor Producto: </label>
+                <input type="text" class="form-control" [value]="precioProductoSeleccionado() | currency" disabled>
             </div>
         </div>
+
         <br />
 
         <div class="text-center">
-            <button type="submit" class="btn btn-primary bg-p">Guardar</button>
+            <h4 class="font-weight-bold color-t">Total a Pagar: {{totalPagar() | currency}}</h4>
+        </div>
+
+        <br />
+
+        <div class="text-center pb-4">
+            <a class="btn btn-primary bg-p text-white mr-2" (click)="volver()"><i class="fas fa-undo"></i> Volver</a>
+            <button type="submit" class="btn btn-primary bg-p text-white"><i class="fas fa-save"></i> Guardar</button>
         </div>
     </form>
 </section>

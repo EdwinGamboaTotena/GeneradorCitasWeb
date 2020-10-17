@@ -18,9 +18,9 @@ export class AgregarProductoComponent implements OnInit {
   constructor(
     private productoService: ProductoService,
     private sweetService: SwalService,
-    public erroresService: ErroresService,
     private zone: NgZone,
     private router: Router,
+    public erroresService: ErroresService
   ) { }
 
   ngOnInit(): void {
