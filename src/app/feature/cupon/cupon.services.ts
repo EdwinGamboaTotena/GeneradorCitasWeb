@@ -16,6 +16,6 @@ export class CuponService {
     }
 
     consultarCuponCitaGeneradora(id: number) {
-        return this.http.post(`${apiCupon}/id_cita_generadora/${id}`, httpOptions).pipe();
+        return this.http.get(`${apiCupon}/id_cita_generadora/${id}`, httpOptions).pipe();
     }
 }

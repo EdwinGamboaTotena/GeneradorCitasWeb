@@ -8,6 +8,7 @@ import { SwalService } from 'src/app/shared/services/swal.service';
 import { Cupon } from '../../cupon/cupon';
 import { CuponService } from '../../cupon/cupon.services';
 import { ProductoService } from '../../producto/producto.service';
+import { Cita } from '../cita';
 import { CitaService } from '../cita.services';
 
 @Component({
@@ -119,12 +120,21 @@ export class AgregarCitaComponent implements OnInit {
     }
   }
 
+  private consultarCuponGenerdao(cita: Cita): void {
+    this.cuponService.consultarCuponCitaGeneradora(cita.id).subscribe(
+      (data: Cupon) => this.sweetService.popUp('Felicitaciones',
+        `Tu compra a generado un cupon de descuento, CUPON: ${data.id} con un DESCUENTO DEL: ${data.porcentajeDescuento}%`,
+        'success')
+    );
+  }
+
   guardar(): void {
     if (this.formularioCita.valid) {
       this.formularioCita.controls.cuponUsado.setValue(this.cuponSeleccionado);
       this.citaService.almacenarCita(this.formularioCita.value).subscribe(
-        (data: Producto) => {
+        (data: Cita) => {
           this.sweetService.popUp('Éxito', 'La cita fue agendada satisfactoriamente', 'success');
+          this.consultarCuponGenerdao(data);
           this.volver();
         },
         (error) => {
