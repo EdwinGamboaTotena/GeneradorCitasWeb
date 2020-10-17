@@ -28,7 +28,7 @@ export class LoaderInterceptorService implements HttpInterceptor {
     );
   }
 
-  private removeRequets(peticion: HttpRequest<any>) {
+  private removeRequets(peticion: HttpRequest<any>): void {
     const indexRequest = this.requests.indexOf(peticion);
     if (indexRequest >= 0) {
       this.requests.splice(indexRequest, 1);

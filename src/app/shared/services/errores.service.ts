@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
 export class ErroresService {
   constructor() { }
 
-  errores(formulario: FormGroup, nombreControl: string, ngForm?: any) {
+  errores(formulario: FormGroup, nombreControl: string, ngForm?: any): any {
     const errores = formulario.get(nombreControl).errors;
     return {
       hayErrores:

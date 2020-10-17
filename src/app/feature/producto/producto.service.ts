@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { apiProducto, httpOptions } from 'src/app/shared/config/end-point';
 import { Producto } from 'src/app/shared/models/producto';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -12,15 +13,15 @@ export class ProductoService {
         private http: HttpClient) {
     }
 
-    listarProductos() {
+    listarProductos(): Observable<any> {
         return this.http.get(apiProducto, httpOptions).pipe();
     }
 
-    consultarProductoId(id: number) {
+    consultarProductoId(id: number): Observable<any> {
         return this.http.get(`${apiProducto}/${id}`, httpOptions).pipe();
     }
 
-    almacenarProducto(producto: Producto) {
+    almacenarProducto(producto: Producto): Observable<any> {
         return this.http.post(apiProducto, producto, httpOptions).pipe();
     }
 }

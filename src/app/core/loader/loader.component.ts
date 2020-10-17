@@ -12,7 +12,7 @@ export class LoaderComponent implements OnInit {
     public loaderService: LoaderService,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

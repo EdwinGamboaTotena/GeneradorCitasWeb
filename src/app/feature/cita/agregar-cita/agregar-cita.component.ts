@@ -35,7 +35,7 @@ export class AgregarCitaComponent implements OnInit {
     private router: Router,
     public erroresService: ErroresService,
   ) {
-    const hoy = new Date()
+    const hoy = new Date();
     this.fechaMinimaParaSolicitar = this.dateToPicker(hoy);
     this.fechaMinimaParaSolicitar.day += 1;
     this.diasNoHabiles();
@@ -54,10 +54,10 @@ export class AgregarCitaComponent implements OnInit {
   diasNoHabiles(): void {
     if (this.fechasDeshabilitadas) {
       this.fechasDeshabilitadas = false;
-      this.markDisabled = (date: NgbDate) => { return false };
+      this.markDisabled = (date: NgbDate) => false;
     } else {
       this.fechasDeshabilitadas = true;
-      this.markDisabled = (date: NgbDate) => { return this.calendar.getWeekday(date) === 7 };
+      this.markDisabled = (date: NgbDate) => this.calendar.getWeekday(date) === 7;
     }
   }
 
@@ -74,7 +74,7 @@ export class AgregarCitaComponent implements OnInit {
     );
   }
 
-  consultarCupon() {
+  consultarCupon(): void {
     const id: number = this.formularioCita.controls.cuponUsado.value;
     if (id != null && id > 0) {
       this.cuponService.consultarCuponId(this.formularioCita.controls.cuponUsado.value).subscribe(
@@ -117,14 +117,21 @@ export class AgregarCitaComponent implements OnInit {
       year: fecha.getFullYear(),
       month: fecha.getMonth() + 1,
       day: fecha.getDate()
-    }
+    };
   }
 
   private consultarCuponGenerdao(cita: Cita): void {
     this.cuponService.consultarCuponCitaGeneradora(cita.id).subscribe(
-      (data: Cupon) => this.sweetService.popUp('Felicitaciones',
-        `Tu compra a generado un cupon de descuento, CUPON: ${data.id} con un DESCUENTO DEL: ${data.porcentajeDescuento}%`,
-        'success')
+      (data: Cupon) => {
+        if (data) {
+          this.sweetService.popUp('Felicitaciones',
+            `Tu compra a generado un cupon de descuento, CUPON: ${data.id} con un DESCUENTO DEL: ${data.porcentajeDescuento}%`,
+            'success');
+        }
+        else {
+          this.sweetService.popUp('Éxito', 'La cita fue agendada satisfactoriamente', 'success');
+        }
+      }
     );
   }
 
@@ -133,7 +140,6 @@ export class AgregarCitaComponent implements OnInit {
       this.formularioCita.controls.cuponUsado.setValue(this.cuponSeleccionado);
       this.citaService.almacenarCita(this.formularioCita.value).subscribe(
         (data: Cita) => {
-          this.sweetService.popUp('Éxito', 'La cita fue agendada satisfactoriamente', 'success');
           this.consultarCuponGenerdao(data);
           this.volver();
         },

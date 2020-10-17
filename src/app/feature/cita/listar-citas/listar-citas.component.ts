@@ -22,7 +22,7 @@ export class ListarCitasComponent implements OnInit {
     );
   }
 
-  mostrarTabla() {
+  mostrarTabla(): boolean {
     return (this.listaCitas === null && this.listaCitas.length === 0);
   }
 
