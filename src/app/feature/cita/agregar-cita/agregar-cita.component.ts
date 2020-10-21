@@ -17,6 +17,7 @@ import { CitaService } from '../cita.services';
 })
 export class AgregarCitaComponent implements OnInit {
 
+  DOMINGO = 7;
   fechaMinimaParaSolicitar: { year: number, month: number, day: number };
   fechasDeshabilitadas = false;
   markDisabled;
@@ -57,7 +58,7 @@ export class AgregarCitaComponent implements OnInit {
       this.markDisabled = (date: NgbDate) => false;
     } else {
       this.fechasDeshabilitadas = true;
-      this.markDisabled = (date: NgbDate) => this.calendar.getWeekday(date) === 7;
+      this.markDisabled = (date: NgbDate) => this.calendar.getWeekday(date) === this.DOMINGO;
     }
   }
 
@@ -88,7 +89,8 @@ export class AgregarCitaComponent implements OnInit {
           }
         },
         (error) => {
-          this.formularioCita.controls.cuponUsado.setValue(null);
+          this.cuponSeleccionado = null;
+          this.formularioCita.controls.cuponUsado.setValue(this.cuponSeleccionado);
           this.sweetService.popUp('Codigo no valido', error.error.mensaje, 'error');
         }
       );
@@ -103,13 +105,15 @@ export class AgregarCitaComponent implements OnInit {
       this.formularioCita.controls.productoSolicitado.value.precio : 0;
   }
 
-  descuentoCuponSeleccionado(): number {
-    return (this.cuponSeleccionado) ? this.cuponSeleccionado.porcentajeDescuento : 0;
+  descuentoCuponSeleccionado(): string {
+    const descuento = (this.cuponSeleccionado) ? this.cuponSeleccionado.porcentajeDescuento : '0'
+    return `${descuento} %`;
   }
 
   totalPagar(): number {
+    const descuento = Number(this.descuentoCuponSeleccionado().replace(' %', ''));
     return (this.precioProductoSeleccionado() -
-      ((this.precioProductoSeleccionado() * this.descuentoCuponSeleccionado()) / 100));
+      ((this.precioProductoSeleccionado() * descuento) / 100));
   }
 
   private dateToPicker(fecha: Date): any {
