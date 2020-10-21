@@ -14,19 +14,19 @@ export class CitaService {
         private http: HttpClient) {
     }
 
-    listarCitas(): Observable<any> {
-        return this.http.get(apiCita, httpOptions).pipe();
+    listarCitas(): Observable<Cita[]> {
+        return this.http.get<Cita[]>(apiCita, httpOptions).pipe();
     }
 
-    consultarCitaId(id: number): Observable<any> {
-        return this.http.get(`${apiCita}/${id}`, httpOptions).pipe();
+    consultarCitaId(id: number): Observable<Cita> {
+        return this.http.get<Cita>(`${apiCita}/${id}`, httpOptions).pipe();
     }
 
-    almacenarCita(cita: Cita): Observable<any> {
+    almacenarCita(cita: Cita): Observable<Cita> {
         cita.fechaGeneracion = this.fechaConHorasCero(new Date());
         cita.precioProducto = cita.productoSolicitado.precio;
         cita.fechaSolicitud = this.fechaConHorasCero(this.pickerToDate(cita.fechaSolicitud));
-        return this.http.post(apiCita, cita, httpOptions).pipe();
+        return this.http.post<Cita>(apiCita, cita, httpOptions).pipe();
     }
 
     private fechaConHorasCero(fecha: Date): Date {

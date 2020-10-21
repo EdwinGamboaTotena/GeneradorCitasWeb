@@ -13,15 +13,15 @@ export class ProductoService {
         private http: HttpClient) {
     }
 
-    listarProductos(): Observable<any> {
-        return this.http.get(apiProducto, httpOptions).pipe();
+    listarProductos(): Observable<Producto[]> {
+        return this.http.get<Producto[]>(apiProducto, httpOptions).pipe();
     }
 
-    consultarProductoId(id: number): Observable<any> {
-        return this.http.get(`${apiProducto}/${id}`, httpOptions).pipe();
+    consultarProductoId(id: number): Observable<Producto> {
+        return this.http.get<Producto>(`${apiProducto}/${id}`, httpOptions).pipe();
     }
 
-    almacenarProducto(producto: Producto): Observable<any> {
-        return this.http.post(apiProducto, producto, httpOptions).pipe();
+    almacenarProducto(producto: Producto): Observable<Producto> {
+        return this.http.post<Producto>(apiProducto, producto, httpOptions).pipe();
     }
 }
